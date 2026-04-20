@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website-Erstellung – Fudora GmbH</title>
+    <meta name="description" content="Professionelle Websites zu fairen Preisen. Pakete von 690€ bis 2.490€. Schnell, KI-gestützt und mit persönlicher Betreuung.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700&family=Merriweather+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-cream: #FAF6F0;
+            --bg-warm: #F5EFE6;
+            --bg-card: #FFFFFF;
+            --text-dark: #3D2E1F;
+            --text-body: #5C4A35;
+            --text-light: #8B7355;
+            --accent-terracotta: #C4704A;
+            --accent-terracotta-light: #D4896A;
+            --accent-sage: #7D9471;
+            --accent-sage-light: #9DB593;
+            --border-warm: #E8DFD3;
+            --shadow-warm: rgba(61,46,31,0.08);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Work Sans', -apple-system, sans-serif;
+            background: var(--bg-cream);
+            color: var(--text-body);
+            line-height: 1.7;
+            font-size: 16px;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Merriweather Sans', Georgia, serif;
+            font-weight: 700;
+            line-height: 1.3;
+            color: var(--text-dark);
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%E3C/svg%3E");
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+            padding: 1.25rem 0;
+            background: rgba(250,246,240,0.95);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border-warm);
+        }
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-family: 'Merriweather Sans', Georgia, serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            text-decoration: none;
+        }
+        .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-terracotta);
+            transition: width 0.3s;
+        }
+        .nav-links a:hover::after,
+        .nav-links a.active::after { width: 100%; }
+        .nav-links a:hover, .nav-links a.active { color: var(--accent-terracotta); }
+        .mobile-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 5px; z-index: 1001; }
+        .mobile-toggle span { width: 22px; height: 2px; background: var(--text-dark); border-radius: 2px; transition: all 0.3s; }
+
+        /* Page Hero */
+        .page-hero {
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8rem 2rem 4rem;
+            background: var(--bg-warm);
+            position: relative;
+            overflow: hidden;
+        }
+        .page-hero::before {
+            content: '';
+            position: absolute;
+            bottom: -10%;
+            right: -5%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(196,112,74,0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .page-hero-content {
+            max-width: 700px;
+            text-align: center;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+        }
+        .page-hero h1 { font-size: clamp(2.25rem, 5vw, 3.5rem); margin-bottom: 1.5rem; }
+        .page-hero h1 .accent { color: var(--accent-terracotta); }
+        .page-subtitle { font-size: 1.15rem; color: var(--text-light); max-width: 580px; margin: 0 auto; line-height: 1.9; }
+
+        /* Section Base */
+        section { padding: 6rem 2rem; position: relative; z-index: 1; }
+        .section-inner { max-width: 1200px; margin: 0 auto; }
+        .section-header { text-align: center; margin-bottom: 4rem; }
+        .section-header h2 { font-size: clamp(1.75rem, 3.5vw, 2.75rem); margin-bottom: 1rem; }
+        .section-desc { font-size: 1.05rem; color: var(--text-light); max-width: 600px; margin: 0 auto; line-height: 1.9; }
+
+        /* Timeline - Prozess */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            padding-left: 60px;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, var(--accent-terracotta), var(--accent-sage));
+            border-radius: 3px;
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+            opacity: 0;
+            transform: translateX(-20px);
+            animation: slideIn 0.5s ease forwards;
+        }
+        .timeline-item:nth-child(1) { animation-delay: 0.1s; }
+        .timeline-item:nth-child(2) { animation-delay: 0.2s; }
+        .timeline-item:nth-child(3) { animation-delay: 0.3s; }
+        .timeline-item:nth-child(4) { animation-delay: 0.4s; }
+        @keyframes slideIn {
+            to { opacity: 1; transform: translateX(0); }
+        }
+        .timeline-dot {
+            position: absolute;
+            left: -52px;
+            top: 0;
+            width: 44px;
+            height: 44px;
+            background: var(--bg-card);
+            border: 3px solid var(--accent-terracotta);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--accent-terracotta);
+            box-shadow: 0 4px 15px var(--shadow-warm);
+        }
+        .timeline-item:nth-child(4) .timeline-dot {
+            background: var(--accent-terracotta);
+            color: white;
+        }
+        .timeline-content {
+            background: var(--bg-card);
+            border: 1px solid var(--border-warm);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px var(--shadow-warm);
+        }
+        .timeline-content h4 { font-size: 1.2rem; margin-bottom: 0.5rem; }
+        .timeline-content p { color: var(--text-light); font-size: 0.95rem; line-height: 1.8; }
+
+        /* Packages Grid */
+        .packages-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        .package-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-warm);
+            border-radius: 24px;
+            padding: 2.5rem 2rem;
+            position: relative;
+            transition: all 0.4s;
+            box-shadow: 0 4px 20px var(--shadow-warm);
+            display: flex;
+            flex-direction: column;
+        }
+        .package-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px var(--shadow-warm);
+        }
+        .package-card.featured {
+            border: 2px solid var(--accent-terracotta);
+        }
+        .package-badge {
+            position: absolute;
+            top: -14px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent-terracotta);
+            color: white;
+            padding: 0.4rem 1.4rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+        .package-header {
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border-warm);
+        }
+        .package-name { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem; }
+        .package-desc { color: var(--text-light); font-size: 0.9rem; margin-bottom: 1.5rem; }
+        .package-price { display: flex; align-items: baseline; gap: 0.3rem; }
+        .package-price .amount {
+            font-family: 'Merriweather Sans', serif;
+            font-size: 3.2rem;
+            font-weight: 700;
+            color: var(--accent-terracotta);
+        }
+        .package-price .period { color: var(--text-light); font-size: 0.9rem; }
+        .package-features { list-style: none; flex-grow: 1; }
+        .package-features li {
+            padding: 0.65rem 0;
+            color: var(--text-body);
+            font-size: 0.9rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            border-bottom: 1px solid rgba(232,223,211,0.5);
+        }
+        .package-features li:last-child { border-bottom: none; }
+        .package-features li::before {
+            content: '✓';
+            color: var(--accent-sage);
+            font-weight: 700;
+            flex-shrink: 0;
+            margin-top: 0.05rem;
+        }
+        .package-btn {
+            display: block;
+            width: 100%;
+            margin-top: 2rem;
+            padding: 1.1rem;
+            background: var(--accent-terracotta);
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.95rem;
+            border-radius: 50px;
+            transition: all 0.3s;
+        }
+        .package-btn:hover {
+            background: var(--accent-terracotta-light);
+            transform: translateY(-2px);
+        }
+
+        /* Maintenance & Hosting */
+        .hosting-section {
+            background: var(--bg-warm);
+            border-radius: 32px;
+            padding: 4rem;
+            margin: 0 2rem;
+        }
+        .maintenance-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+        .maintenance-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-warm);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.3s;
+            box-shadow: 0 2px 12px var(--shadow-warm);
+        }
+        .maintenance-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px var(--shadow-warm);
+        }
+        .maintenance-card h4 { font-size: 1.15rem; margin-bottom: 0.5rem; }
+        .maintenance-card .price {
+            font-family: 'Merriweather Sans', serif;
+            font-size: 1.5rem;
+            color: var(--accent-terracotta);
+            margin-bottom: 1.5rem;
+        }
+        .maintenance-card .price span { font-size: 0.85rem; color: var(--text-light); font-family: 'Work Sans', sans-serif; }
+        .maintenance-card ul { list-style: none; }
+        .maintenance-card li {
+            padding: 0.5rem 0;
+            color: var(--text-body);
+            font-size: 0.88rem;
+            border-bottom: 1px solid rgba(232,223,211,0.5);
+        }
+        .maintenance-card li:last-child { border-bottom: none; }
+        .maintenance-card li::before {
+            content: '–';
+            color: var(--accent-sage);
+            margin-right: 0.6rem;
+            font-weight: 700;
+        }
+
+        /* Form Section */
+        .form-section {
+            background: var(--bg-card);
+            border: 1px solid var(--border-warm);
+            border-radius: 32px;
+            padding: 4rem;
+            margin: 0 2rem;
+            box-shadow: 0 4px 30px var(--shadow-warm);
+        }
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+        .form-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--accent-terracotta);
+            display: inline-block;
+        }
+        .form-group { margin-bottom: 1.25rem; }
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.9rem 1.1rem;
+            font-size: 0.95rem;
+            font-family: 'Work Sans', sans-serif;
+            border: 2px solid var(--border-warm);
+            border-radius: 12px;
+            background: var(--bg-cream);
+            color: var(--text-body);
+            transition: all 0.3s;
+        }
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--accent-terracotta);
+            background: white;
+        }
+        .form-group textarea { min-height: 100px; resize: vertical; }
+        .contact-prefs { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 0.5rem; }
+        .contact-pref {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1rem;
+            background: var(--bg-cream);
+            border: 2px solid var(--border-warm);
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.88rem;
+        }
+        .contact-pref:hover { border-color: var(--accent-terracotta-light); }
+        .contact-pref input { display: none; }
+        .contact-pref input:checked + span { color: var(--accent-terracotta); }
+        .contact-pref.selected {
+            background: rgba(196,112,74,0.1);
+            border-color: var(--accent-terracotta);
+        }
+        .form-submit {
+            display: block;
+            width: 100%;
+            padding: 1.2rem;
+            background: var(--accent-terracotta);
+            color: white;
+            font-size: 1rem;
+            font-weight: 700;
+            font-family: 'Work Sans', sans-serif;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 2rem;
+        }
+        .form-submit:hover {
+            background: var(--accent-terracotta-light);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(196,112,74,0.35);
+        }
+
+        /* FAQ */
+        .faq-grid {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .faq-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border-warm);
+            border-radius: 16px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            box-shadow: 0 2px 10px var(--shadow-warm);
+            transition: all 0.3s;
+        }
+        .faq-item:hover {
+            box-shadow: 0 8px 30px var(--shadow-warm);
+        }
+        .faq-question {
+            width: 100%;
+            padding: 1.5rem 2rem;
+            background: none;
+            border: none;
+            text-align: left;
+            font-family: 'Merriweather Sans', serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            transition: all 0.3s;
+        }
+        .faq-question::after {
+            content: '+';
+            font-size: 1.5rem;
+            color: var(--accent-terracotta);
+            transition: transform 0.3s;
+            flex-shrink: 0;
+        }
+        .faq-item.open .faq-question::after {
+            transform: rotate(45deg);
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+        }
+        .faq-item.open .faq-answer {
+            max-height: 300px;
+        }
+        .faq-answer-inner {
+            padding: 0 2rem 1.5rem;
+            color: var(--text-body);
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+
+        /* CTA */
+        .cta-section {
+            background: linear-gradient(135deg, var(--accent-sage) 0%, #6B8561 100%);
+            border-radius: 32px;
+            padding: 4rem;
+            text-align: center;
+            margin: 0 2rem;
+        }
+        .cta-section h2 { color: white; font-size: 2rem; margin-bottom: 1rem; }
+        .cta-section p { color: rgba(255,255,255,0.85); font-size: 1.1rem; margin-bottom: 2rem; max-width: 500px; margin-left: auto; margin-right: auto; }
+        .btn { display: inline-flex; align-items: center; gap: 0.75rem; padding: 1rem 2rem; font-size: 0.95rem; font-family: 'Work Sans', sans-serif; font-weight: 600; text-decoration: none; cursor: pointer; border: none; border-radius: 50px; transition: all 0.3s; }
+        .btn-primary { background: white; color: var(--accent-sage); box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,0,0,0.15); }
+
+        /* Footer */
+        footer { background: var(--bg-warm); border-top: 1px solid var(--border-warm); padding: 4rem 2rem 2rem; margin-top: 6rem; }
+        .footer-inner { max-width: 1200px; margin: 0 auto; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+        .footer-brand .logo { font-family: 'Merriweather Sans', serif; font-size: 1.4rem; font-weight: 700; color: var(--text-dark); text-decoration: none; }
+        .footer-brand p { color: var(--text-light); margin-top: 1rem; font-size: 0.9rem; line-height: 1.7; }
+        .footer-col h4 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-light); margin-bottom: 1.25rem; }
+        .footer-col ul { list-style: none; }
+        .footer-col li { margin-bottom: 0.75rem; }
+        .footer-col a { color: var(--text-body); text-decoration: none; font-size: 0.9rem; transition: color 0.3s; }
+        .footer-col a:hover { color: var(--accent-terracotta); }
+        .footer-bottom { border-top: 1px solid var(--border-warm); padding-top: 2rem; text-align: center; color: var(--text-light); font-size: 0.85rem; }
+
+        /* Mobile Nav */
+        @media (max-width: 1024px) {
+            .packages-grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
+            .maintenance-grid { grid-template-columns: repeat(2, 1fr); }
+            .form-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 768px) {
+            .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: rgba(250,246,240,0.98); backdrop-filter: blur(12px); flex-direction: column; padding: 1.5rem 2rem; gap: 1.25rem; border-bottom: 1px solid var(--border-warm); }
+            .nav-links.active { display: flex; }
+            .mobile-toggle { display: flex; }
+            .mobile-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+            .mobile-toggle.active span:nth-child(2) { opacity: 0; }
+            .mobile-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+            section { padding: 4rem 1.5rem; }
+            .page-hero { min-height: 50vh; padding: 7rem 1.5rem 3rem; }
+            .timeline { padding-left: 50px; }
+            .timeline::before { left: 16px; }
+            .timeline-dot { left: -44px; width: 36px; height: 36px; font-size: 1rem; }
+            .hosting-section { padding: 2.5rem 1.5rem; margin: 0 1rem; }
+            .form-section { padding: 2.5rem 1.5rem; margin: 0 1rem; }
+            .cta-section { padding: 3rem 1.5rem; margin: 0 1rem; }
+            .maintenance-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-inner">
+            <a href="index.html" class="logo">Fudora</a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Start</a></li>
+                <li><a href="websites.html" class="active">Websites</a></li>
+                <li><a href="beratung.html">Beratung</a></li>
+                <li><a href="relux.html">Relux</a></li>
+                <li><a href="kontakt.html">Kontakt</a></li>
+            </ul>
+            <div class="mobile-toggle" id="mobileToggle"><span></span><span></span><span></span></div>
+        </div>
+    </nav>
+
+    <section class="page-hero">
+        <div class="page-hero-content">
+            <h1>Website-Erstellung – <span class="accent">schnell & professionell</span></h1>
+            <p class="page-subtitle">
+                Von der einfachen Homepage bis zum umfassenden Webauftritt. 
+                Dank modernster KI-Technologie effizient erstellt – mit persönlicher Betreuung von Anfang an.
+            </p>
+        </div>
+    </section>
+
+    <!-- Prozess-Timeline -->
+    <section id="prozess">
+        <div class="section-inner">
+            <div class="section-header">
+                <h2>So entsteht Ihre Website</h2>
+                <p class="section-desc">Vier Schritte von der ersten Idee bis zur fertigen Website.</p>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot">1</div>
+                    <div class="timeline-content">
+                        <h4>Fragebogen ausfüllen</h4>
+                        <p>Sie füllen unseren Fragebogen aus – ganz in Ruhe, ohne Zeitdruck. Er hilft uns, Sie und Ihr Unternehmen kennenzulernen. Danach erhalten Sie kostenlos einen ersten Entwurf.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot">2</div>
+                    <div class="timeline-content">
+                        <h4>Erster Entwurf</h4>
+                        <p>Auf Basis Ihrer Beschreibung erstellen wir einen ersten Entwurf. Diesen besprechen wir gemeinsam und Sie wählen ein Theme oder Design- Richtung. Bis zu 2 Revisionsrunden sind inklusive.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot">3</div>
+                    <div class="timeline-content">
+                        <h4>Final Review</h4>
+                        <p>Sobald der Entwurf steht, finalisieren wir alle Inhalte. Sie schicken uns Ihre Bilder und Texte (oder wir helfen bei der Erstellung mit KI-Unterstützung).</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot">✓</div>
+                    <div class="timeline-content">
+                        <h4>Ihre fertige Website</h4>
+                        <p>Nach dem letzten Feinschliff erhalten Sie Ihre fertige Website – inklusive aller Dateien, Domain-Anbindung und einem Ansprechpartner für Fragen. Willkommen in der digitalen Welt!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pakete -->
+    <section id="pakete">
+        <div class="section-inner">
+            <div class="section-header">
+                <h2>Wählen Sie Ihr Paket</h2>
+                <p class="section-desc">Drei Pakete – jedes mit dem Anspruch auf Qualität und persönliche Betreuung.</p>
+            </div>
+            <div class="packages-grid">
+                <div class="package-card">
+                    <div class="package-header">
+                        <div class="package-name">Basis</div>
+                        <div class="package-desc">Für Einzelunternehmer, Nebenerwerbs-Handwerker und kleine Betriebe</div>
+                        <div class="package-price"><span class="amount">690€</span><span class="period">einmalig</span></div>
+                    </div>
+                    <ul class="package-features">
+                        <li>Einseitige Website (One-Pager)</li>
+                        <li>Startseite mit allen wichtigen Infos</li>
+                        <li>Responsive Design (Mobile/Tablet/Desktop)</li>
+                        <li>Kontaktformular mit E-Mail-Weiterleitung</li>
+                        <li>Google-Optimierung (Meta-Tags, Sitemap)</li>
+                        <li>Eigene Domain-Anbindung</li>
+                        <li>Hosting auf Cloudflare Pages</li>
+                        <li>DSGVO-konform (ohne Cookies, ohne Tracking)</li>
+                        <li>Übergabe aller Dateien</li>
+                    </ul>
+                    <a href="#anfrage" class="package-btn">Jetzt anfragen</a>
+                </div>
+
+                <div class="package-card featured">
+                    <div class="package-badge">Beliebt</div>
+                    <div class="package-header">
+                        <div class="package-name">Standard</div>
+                        <div class="package-desc">Das Kernangebot – passt für ca. 70% der Handwerksbetriebe</div>
+                        <div class="package-price"><span class="amount">1.290€</span><span class="period">einmalig</span></div>
+                    </div>
+                    <ul class="package-features">
+                        <li>Alles aus Basis</li>
+                        <li>Bis zu 5 Unterseiten</li>
+                        <li>Bildergalerie für Projekte & Team</li>
+                        <li>Vorher-Nachher-Bereich für Referenzen</li>
+                        <li>Google-Maps-Einbindung (datenschutzkonform)</li>
+                        <li>Erweiterte SEO-Optimierung</li>
+                        <li>Google My Business-Einrichtung</li>
+                        <li>Textunterstützung durch KI</li>
+                        <li>2 Revisionsrunden inklusive</li>
+                    </ul>
+                    <a href="#anfrage" class="package-btn">Jetzt anfragen</a>
+                </div>
+
+                <div class="package-card">
+                    <div class="package-header">
+                        <div class="package-name">Premium</div>
+                        <div class="package-desc">Für größere Betriebe mit stärkerem Auftritt</div>
+                        <div class="package-price"><span class="amount">2.490€</span><span class="period">einmalig</span></div>
+                    </div>
+                    <ul class="package-features">
+                        <li>Alles aus Standard</li>
+                        <li>Bis zu 10 Unterseiten</li>
+                        <li>Individuelles Design (eigene Farbwelt/Typografie)</li>
+                        <li>Blog-/News-Bereich (auf Wunsch)</li>
+                        <li>Terminbuchungs-Anbindung (Calendly/Cal.com)</li>
+                        <li>SEO-Check nach 4 Wochen</li>
+                        <li>DSGVO-freundliche Analytics-Alternative</li>
+                        <li>3 Revisionsrunden inklusive</li>
+                    </ul>
+                    <a href="#anfrage" class="package-btn">Jetzt anfragen</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hosting & Wartung -->
+    <section id="hosting">
+        <div class="hosting-section">
+            <div class="section-header">
+                <h2>Hosting & Wartung</h2>
+                <p class="section-desc">Entscheiden Sie selbst, wie viel Betreuung Sie möchten – von gar keiner bis zum Rundum-Sorglos-Paket.</p>
+            </div>
+            <div class="maintenance-grid">
+                <div class="maintenance-card">
+                    <h4>Kein Hosting</h4>
+                    <div class="price">0€ <span>/ Monat</span></div>
+                    <ul>
+                        <li>Keine laufenden Kosten</li>
+                        <li>Sie kümmern sich selbst um Domain & Hosting</li>
+                        <li>Änderungen auf Anfrage</li>
+                    </ul>
+                </div>
+                <div class="maintenance-card">
+                    <h4>Essenziell</h4>
+                    <div class="price">19€ <span>/ Monat</span></div>
+                    <ul>
+                        <li>Hosting-Betreuung (Cloudflare)</li>
+                        <li>Domain-Verlängerungs-Management</li>
+                        <li>SSL-Zertifikate automatisch</li>
+                        <li>Erreichbarkeits-Monitoring</li>
+                        <li>Jährlicher Sicherheits-Check</li>
+                    </ul>
+                </div>
+                <div class="maintenance-card">
+                    <h4>Pflege</h4>
+                    <div class="price">29€ <span>/ Monat</span></div>
+                    <ul>
+                        <li>Alles aus Essenziell</li>
+                        <li>2 kleine Änderungen pro Monat inklusive</li>
+                        <li>Jährlicher Funktions-Check</li>
+                        <li>E-Mail-Support binnen 48 Stunden</li>
+                    </ul>
+                </div>
+                <div class="maintenance-card">
+                    <h4>Aktiv</h4>
+                    <div class="price">59€ <span>/ Monat</span></div>
+                    <ul>
+                        <li>Alles aus Pflege</li>
+                        <li>Bis zu 5 Änderungen pro Monat</li>
+                        <li>Neue Referenzprojekte einpflegen (bis 2/Monat)</li>
+                        <li>Quartalsweiser SEO-Check</li>
+                        <li>Priorisierter Support binnen 24 Stunden</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Anfrage-Formular -->
+    <section id="anfrage">
+        <div class="section-inner">
+            <div class="section-header">
+                <h2>Kostenloser Erstentwurf</h2>
+                <p class="section-desc">Erzählen Sie uns von Ihrem Projekt – wir melden uns mit einem unverbindlichen Erstentwurf bei Ihnen.</p>
+            </div>
+            <div class="form-section">
+                <form id="contactForm">
+                    <div class="form-grid">
+                        <div class="form-column">
+                            <h3>Grundlegendes</h3>
+                            <div class="form-group">
+                                <label for="company">Was ist das für ein Unternehmen / Projekt?</label>
+                                <input type="text" id="company" name="company" placeholder="z.B. Schreinerbetrieb Müller, Online-Shop..." required>
+                            </div>
+                            <div class="form-group">
+                                <label for="goal">Was ist Ihr Ziel?</label>
+                                <select id="goal" name="goal">
+                                    <option value="">Bitte auswählen...</option>
+                                    <option value="mehr-kunden">Mehr Kunden gewinnen</option>
+                                    <option value="informativ">Informative Präsenz aufbauen</option>
+                                    <option value="verkauf">Produkte/Dienstleistungen verkaufen</option>
+                                    <option value="sonstiges">Sonstiges</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="pages">Wie viele Seiten brauchen Sie?</label>
+                                <select id="pages" name="pages">
+                                    <option value="">Bitte auswählen...</option>
+                                    <option value="1">Nur eine Seite (One-Pager)</option>
+                                    <option value="2-3">2–3 Unterseiten</option>
+                                    <option value="4-5">4–5 Unterseiten</option>
+                                    <option value="6+">Mehr als 6 Seiten</option>
+                                </select>
+                            </div>
+
+                            <h3>Design & Stil</h3>
+                            <div class="form-group">
+                                <label for="examples">Haben Sie Beispiele von Websites, die Ihnen gefallen?</label>
+                                <input type="text" id="examples" name="examples" placeholder="URLs oder Stichworte...">
+                            </div>
+                            <div class="form-group">
+                                <label for="mood">Welche Stimmung soll die Website transportieren?</label>
+                                <select id="mood" name="mood">
+                                    <option value="">Bitte auswählen...</option>
+                                    <option value="modern">Modern & clean</option>
+                                    <option value="klassisch">Klassisch & seriös</option>
+                                    <option value="minimalistisch">Minimalistisch</option>
+                                    <option value="warm">Warm & einladend</option>
+                                    <option value="dunkel">Dunkel & edel</option>
+                                    <option value="bunt">Bunt & verspielt</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="colors">Bestimmte Farben oder Markenfarben?</label>
+                                <input type="text" id="colors" name="colors" placeholder="z.B. Blau & Weiß, RAL 3020...">
+                            </div>
+                        </div>
+
+                        <div class="form-column">
+                            <h3>Inhalte & Funktionen</h3>
+                            <div class="form-group">
+                                <label for="content">Haben Sie schon Texte und Bilder, oder muss alles erstellt werden?</label>
+                                <textarea id="content" name="content" placeholder="Beschreiben Sie kurz den aktuellen Stand..."></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="features">Welche Funktionen brauchen Sie?</label>
+                                <select id="features" name="features">
+                                    <option value="">Bitte auswählen...</option>
+                                    <option value="kontaktformular">Kontaktformular</option>
+                                    <option value="galerie">Bildergalerie</option>
+                                    <option value="referenzen">Vorher-Nachher / Referenzen</option>
+                                    <option value="terminbuchung">Terminbuchung</option>
+                                    <option value="blog">Blog / News-Bereich</option>
+                                    <option value="shop">Online-Shop</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="cms">Soll die Seite später selbst gepflegt werden können?</label>
+                                <select id="cms" name="cms">
+                                    <option value="">Bitte auswählen...</option>
+                                    <option value="nein">Nein, keine Änderungen nötig</option>
+                                    <option value="ja-einfach">Ja, einfache Änderungen (Öffnungszeiten, Texte)</option>
+                                    <option value="ja-umfangreich">Ja, umfangreiche Änderungen möglich</option>
+                                </select>
+                            </div>
+
+                            <h3>Budget & Zeitplan</h3>
+                            <div class="form-group">
+                                <label for="budget">Was darf es kosten? (Richtwert)</label>
+                                <select id="budget" name="budget">
+                                    <option value="">Bitte auswählen...</option>
+                                    <option value="bis-1000">Bis 1.000€</option>
+                                    <option value="1000-2000">1.000€ – 2.000€</option>
+                                    <option value="2000-3000">2.000€ – 3.000€</option>
+                                    <option value="ueber-3000">Über 3.000€</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="timeline">Wann soll die Seite fertig sein?</label>
+                                <select id="timeline" name="timeline">
+                                    <option value="">Bitte auswählen...</option>
+                                    <option value="dringend">So schnell wie möglich</option>
+                                    <option value="1-2-monate">In 1–2 Monaten</option>
+                                    <option value="2-4-monate">In 2–4 Monaten</option>
+                                    <option value="flexibel">Flexibel / noch offen</option>
+                                </select>
+                            </div>
+
+                            <h3>So erreichen Sie uns</h3>
+                            <div class="form-group">
+                                <label for="name">Ihr Name</label>
+                                <input type="text" id="name" name="name" placeholder="Max Mustermann" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">E-Mail</label>
+                                <input type="email" id="email" name="email" placeholder="ihre@email.de" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Telefon (optional)</label>
+                                <input type="tel" id="phone" name="phone" placeholder="+41 79 123 45 67">
+                            </div>
+                            <div class="form-group">
+                                <label>Wie dürfen wir Sie kontaktieren?</label>
+                                <div class="contact-prefs">
+                                    <label class="contact-pref selected">
+                                        <input type="checkbox" name="contact_method" value="email" checked>
+                                        <span>📧 E-Mail</span>
+                                    </label>
+                                    <label class="contact-pref">
+                                        <input type="checkbox" name="contact_method" value="whatsapp">
+                                        <span>💬 WhatsApp</span>
+                                    </label>
+                                    <label class="contact-pref">
+                                        <input type="checkbox" name="contact_method" value="signal">
+                                        <span>🔒 Signal</span>
+                                    </label>
+                                    <label class="contact-pref">
+                                        <input type="checkbox" name="contact_method" value="telegram">
+                                        <span>✈️ Telegram</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="form-submit">Kostenlosen Erstentwurf anfordern →</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq">
+        <div class="section-inner">
+            <div class="section-header">
+                <h2>Häufige Fragen</h2>
+                <p class="section-desc">Hier finden Sie Antworten auf die wichtigsten Fragen.</p>
+            </div>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <button class="faq-question">Warum seid ihr so günstig und schnell im Vergleich zu anderen Anbietern?</button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            Wir haben tiefes Know-how im Websitebau und setzen eigene KI-Technologie ein. Dadurch können wir unsere Kosten begrenzen und diese Ersparnis an unsere Kunden weitergeben. Wir arbeiten effizient, ohne dabei an Qualität zu sparen – im Gegenteil: KI hilft uns, schneller und präziser zu arbeiten.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">Bietet ihr auch Wartung und Hosting an?</button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            Ja! Wir bieten verschiedene Wartungspakete an – von der reinen technischen Grundabsicherung (19€/Monat) bis zum Rundum-Sorglos-Paket mit regelmäßigen Änderungen und SEO-Checks (59€/Monat). Optional können Sie auch Hosting und Domain-Verwaltung komplett uns überlassen.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">Ich habe schon eine Website – könnt ihr die modernisieren?</button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            Absolut! Wir modernisieren bestehende Websites either komplett oder schrittweise. Je nach Umfang können wir Ihr Design auffrischen, die Seite technisch auf den neuesten Stand bringen oder neue Funktionen integrieren.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">Wie läuft die Zusammenarbeit ab?</button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            Sie füllen unseren Fragebogen aus, wir erstellen einen kostenlosen Erstentwurf, besprechen ihn gemeinsam, und arbeiten dann zügig an der Fertigstellung. Dabei haben Sie jederzeit einen festen Ansprechpartner – keine anonyme Massenabfertigung.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">Sind die Websites DSGVO-konform?</button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            Ja, alle unsere Websites sind DSGVO-konform. Wir verzichten standardmäßig auf Cookies und Tracking. Für Analytics bieten wir DSGVO-freundliche Alternativen wie Plausible oder selbst gehostetes Umami an.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">Was passiert nach der Fertigstellung?</button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            Sie erhalten alle Dateien und vollen Zugriff. Wenn Sie möchten, übernehmen wir auch die laufende Betreuung. Bei Fragen sind wir jederzeit erreichbar – wir lassen Sie nach der Übergabe nicht im Regen stehen.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section id="cta">
+        <div class="cta-section">
+            <h2>Bereit für Ihre neue Website?</h2>
+            <p>Erzählen Sie uns von Ihrem Projekt – wir melden uns mit einem kostenlosen Erstentwurf bei Ihnen.</p>
+            <a href="#anfrage" class="btn btn-primary">Jetzt anfragen →</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo">Fudora</a>
+                    <p>Fudora GmbH mit Sitz in der Schweiz. Wir schaffen Mehrwert durch Qualität, gute Kommunikation und Vertrauen.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Leistungen</h4>
+                    <ul>
+                        <li><a href="websites.html">Website-Erstellung</a></li>
+                        <li><a href="beratung.html">Unternehmensberatung</a></li>
+                        <li><a href="relux.html">Relux Produkte</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Unternehmen</h4>
+                    <ul>
+                        <li><a href="index.html#team">Team</a></li>
+                        <li><a href="index.html#values">Werte</a></li>
+                        <li><a href="kontakt.html">Kontakt</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Rechtliches</h4>
+                    <ul>
+                        <li><a href="impressum.html">Impressum</a></li>
+                        <li><a href="datenschutz.html">Datenschutz</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 Fudora GmbH – Rheinthalstrasse 48, 5345 Leibstadt, Schweiz</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile nav toggle
+        const toggle = document.getElementById('mobileToggle');
+        const navLinks = document.getElementById('navLinks');
+        toggle.addEventListener('click', () => {
+            toggle.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        // FAQ accordion
+        document.querySelectorAll('.faq-question').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const item = btn.closest('.faq-item');
+                const isOpen = item.classList.contains('open');
+                document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+                if (!isOpen) item.classList.add('open');
+            });
+        });
+
+        // Contact preference toggles
+        document.querySelectorAll('.contact-pref').forEach(pref => {
+            pref.addEventListener('click', () => {
+                const checkbox = pref.querySelector('input');
+                // For single selection behavior, uncheck others
+                document.querySelectorAll('.contact-pref input').forEach(cb => {
+                    if (cb !== checkbox) cb.checked = false;
+                });
+                document.querySelectorAll('.contact-pref').forEach(p => p.classList.remove('selected'));
+                if (checkbox.checked) {
+                    pref.classList.add('selected');
+                }
+            });
+        });
+
+        // Form submission (demo)
+        document.getElementById('contactForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const btn = e.target.querySelector('.form-submit');
+            btn.textContent = 'Wird gesendet...';
+            btn.disabled = true;
+            setTimeout(() => {
+                btn.textContent = '✓ Anfrage gesendet!';
+                btn.style.background = 'var(--accent-sage)';
+                setTimeout(() => {
+                    btn.textContent = 'Kostenlosen Erstentwurf anfordern →';
+                    btn.style.background = '';
+                    btn.disabled = false;
+                    e.target.reset();
+                }, 2500);
+            }, 1200);
+        });
+    </script>
+</body>
+</html>

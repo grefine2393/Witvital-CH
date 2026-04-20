@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Datenschutz – Fudora GmbH</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700&family=Merriweather+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg-cream: #FAF6F0; --bg-warm: #F5EFE6; --bg-card: #FFFFFF; --text-dark: #3D2E1F; --text-body: #5C4A35; --text-light: #8B7355; --accent-terracotta: #C4704A; --accent-terracotta-light: #D4896A; --accent-sage: #7D9471; --accent-sage-light: #9DB593; --border-warm: #E8DFD3; --shadow-warm: rgba(61,46,31,0.08); }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Work Sans', -apple-system, sans-serif; background: var(--bg-cream); color: var(--text-body); line-height: 1.7; font-size: 16px; }
+        h1, h2, h3, h4 { font-family: 'Merriweather Sans', Georgia, serif; font-weight: 700; line-height: 1.3; color: var(--text-dark); }
+        body::before { content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E"); pointer-events: none; z-index: 0; }
+        nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 1.25rem 0; background: rgba(250,246,240,0.95); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border-warm); }
+        .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 2rem; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: 'Merriweather Sans', Georgia, serif; font-size: 1.6rem; font-weight: 700; color: var(--text-dark); text-decoration: none; }
+        .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+        .nav-links a { color: var(--text-light); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.3s; position: relative; }
+        .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: var(--accent-terracotta); transition: width 0.3s; }
+        .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+        .nav-links a:hover, .nav-links a.active { color: var(--accent-terracotta); }
+        .mobile-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 5px; z-index: 1001; }
+        .mobile-toggle span { width: 22px; height: 2px; background: var(--text-dark); border-radius: 2px; transition: all 0.3s; }
+        .page-hero { min-height: 40vh; display: flex; align-items: center; justify-content: center; padding: 8rem 2rem 3rem; background: var(--bg-warm); position: relative; overflow: hidden; }
+        .page-hero-content { max-width: 700px; text-align: center; padding: 0 2rem; position: relative; z-index: 1; }
+        .page-hero h1 { font-size: clamp(2.25rem, 5vw, 3rem); }
+        .content { padding: 5rem 2rem; position: relative; z-index: 1; }
+        .content-inner { max-width: 800px; margin: 0 auto; background: var(--bg-card); border: 1px solid var(--border-warm); border-radius: 24px; padding: 3rem; box-shadow: 0 4px 30px var(--shadow-warm); }
+        .content h2 { font-size: 1.4rem; margin-top: 2rem; margin-bottom: 1rem; padding-top: 1rem; border-top: 1px solid var(--border-warm); }
+        .content h2:first-child { margin-top: 0; padding-top: 0; border-top: none; }
+        .content p { margin-bottom: 1rem; line-height: 1.9; }
+        .content ul { margin-bottom: 1rem; padding-left: 1.5rem; }
+        .content li { margin-bottom: 0.5rem; line-height: 1.8; }
+        footer { background: var(--bg-warm); border-top: 1px solid var(--border-warm); padding: 4rem 2rem 2rem; margin-top: 4rem; }
+        .footer-inner { max-width: 1200px; margin: 0 auto; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+        .footer-brand .logo { font-family: 'Merriweather Sans', serif; font-size: 1.4rem; font-weight: 700; color: var(--text-dark); text-decoration: none; }
+        .footer-brand p { color: var(--text-light); margin-top: 1rem; font-size: 0.9rem; line-height: 1.7; }
+        .footer-col h4 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-light); margin-bottom: 1.25rem; }
+        .footer-col ul { list-style: none; }
+        .footer-col li { margin-bottom: 0.75rem; }
+        .footer-col a { color: var(--text-body); text-decoration: none; font-size: 0.9rem; transition: color 0.3s; }
+        .footer-col a:hover { color: var(--accent-terracotta); }
+        .footer-bottom { border-top: 1px solid var(--border-warm); padding-top: 2rem; text-align: center; color: var(--text-light); font-size: 0.85rem; }
+        @media (max-width: 768px) {
+            .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: rgba(250,246,240,0.98); backdrop-filter: blur(12px); flex-direction: column; padding: 1.5rem 2rem; gap: 1.25rem; border-bottom: 1px solid var(--border-warm); }
+            .nav-links.active { display: flex; }
+            .mobile-toggle { display: flex; }
+            .mobile-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+            .mobile-toggle.active span:nth-child(2) { opacity: 0; }
+            .mobile-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+            .content { padding: 3rem 1.5rem; }
+            .content-inner { padding: 2rem 1.5rem; }
+            .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-inner">
+            <a href="index.html" class="logo">Fudora</a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Start</a></li>
+                <li><a href="websites.html">Websites</a></li>
+                <li><a href="beratung.html">Beratung</a></li>
+                <li><a href="relux.html">Relux</a></li>
+                <li><a href="kontakt.html">Kontakt</a></li>
+            </ul>
+            <div class="mobile-toggle" id="mobileToggle"><span></span><span></span><span></span></div>
+        </div>
+    </nav>
+
+    <section class="page-hero">
+        <div class="page-hero-content">
+            <h1>Datenschutzerklärung</h1>
+        </div>
+    </section>
+
+    <div class="content">
+        <div class="content-inner">
+            <h2>1. Datenschutz auf einen Blick</h2>
+            <p>
+                <strong>Allgemeine Hinweise</strong><br>
+                Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit Ihren personenbezogenen Daten passiert, wenn Sie diese Website besuchen. Personenbezogene Daten sind alle Daten, mit denen Sie persönlich identifiziert werden können.
+            </p>
+
+            <h2>2. Datenerfassung auf dieser Website</h2>
+            <p><strong>Wer ist verantwortlich für die Datenerfassung auf dieser Website?</strong></p>
+            <p>Die Datenverarbeitung auf dieser Website erfolgt durch den Websitebetreiber. Dessen Kontaktdaten können Sie dem Impressum dieser Website entnehmen.</p>
+
+            <p><strong>Wie erfassen wir Ihre Daten?</strong></p>
+            <p>Ihre Daten werden zum einen dadurch erhoben, dass Sie uns diese mitteilen (z.B. über das Kontaktformular). Andere Daten werden automatisch beim Besuch der Website durch unsere IT-Systeme erfasst (z.B. technische Daten wie Browser, Betriebssystem oder Uhrzeit des Seitenaufrufs).</p>
+
+            <h2>3. Kontaktformular</h2>
+            <p>
+                Wenn Sie uns per Kontaktformular Anfragen zukommen lassen, werden Ihre Angaben aus dem Anfrageformular inklusive der von Ihnen dort angegebenen Kontaktdaten zwecks Bearbeitung der Anfrage und für den Fall von Anschlussfragen bei uns gespeichert. Diese Daten geben wir nicht ohne Ihre Einwilligung weiter.
+            </p>
+
+            <h2>4. SSL-Verschlüsselung</h2>
+            <p>
+                Diese Seite nutzt aus Sicherheitsgründen eine SSL-Verschlüsselung. Eine verschlüsselte Verbindung erkennen Sie daran, dass die Adressleiste des Browsers von "http://" auf "https://" wechselt und an dem Schloss-Symbol in Ihrer Browserzeile.
+            </p>
+
+            <h2>5. Cookies</h2>
+            <p>
+                Diese Website verwendet keine Cookies. Wir verzichten bewusst auf Tracking und analyse-Tools, um Ihre Privatsphäre zu schützen.
+            </p>
+
+            <h2>6. Dienste Dritter</h2>
+            <p>
+                Auf dieser Website binden wir keine Dienste Dritter ein, die Daten über Sie sammeln. Alle Fonts werden von Google Fonts geladen, wobei nur technische Verbindungsdaten übertragen werden.
+            </p>
+
+            <h2>7. Hosting</h2>
+            <p>
+                Diese Website wird auf Cloudflare Pages gehostet. Cloudflare ist ein Dienst der Cloudflare, Inc., 101 Townsend St, San Francisco, CA 94107, USA. Cloudflare Pages speichert keine personenbezogenen Daten auf seinen Servern.
+            </p>
+
+            <h2>8. Ihre Rechte</h2>
+            <p>Sie haben jederzeit das Recht, unentgeltlich Auskunft über Herkunft, Empfänger und Zweck Ihrer gespeicherten personenbezogenen Daten zu erhalten. Sie haben außerdem ein Recht, die Berichtigung oder Löschung dieser Daten zu verlangen. Wenn Sie eine Einwilligung zur Datenverarbeitung erteilt haben, können Sie diese Einwilligung jederzeit für die Zukunft widerrufen.</p>
+            <p>Sie haben das Recht, unter bestimmten Umständen die Einschränkung der Verarbeitung Ihrer personenbezogenen Daten zu verlangen.</p>
+
+            <h2>9. Kontakt</h2>
+            <p>
+                Wenn Sie Fragen zum Datenschutz haben, schreiben Sie uns eine E-Mail an: <strong>info@fudora.ch</strong>
+            </p>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo">Fudora</a>
+                    <p>Fudora GmbH mit Sitz in der Schweiz. Wir schaffen Mehrwert durch Qualität, gute Kommunikation und Vertrauen.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Leistungen</h4>
+                    <ul>
+                        <li><a href="websites.html">Website-Erstellung</a></li>
+                        <li><a href="beratung.html">Unternehmensberatung</a></li>
+                        <li><a href="relux.html">Relux Produkte</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Unternehmen</h4>
+                    <ul>
+                        <li><a href="index.html#team">Team</a></li>
+                        <li><a href="index.html#values">Werte</a></li>
+                        <li><a href="kontakt.html">Kontakt</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Rechtliches</h4>
+                    <ul>
+                        <li><a href="impressum.html">Impressum</a></li>
+                        <li><a href="datenschutz.html">Datenschutz</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 Fudora GmbH – Rheinthalstrasse 48, 5345 Leibstadt, Schweiz</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const toggle = document.getElementById('mobileToggle');
+        const navLinks = document.getElementById('navLinks');
+        toggle.addEventListener('click', () => {
+            toggle.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>

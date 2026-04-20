@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kontakt – Fudora GmbH</title>
+    <meta name="description" content="Kontaktieren Sie Fudora GmbH. Wir freuen uns auf Ihre Anfrage zu Websites, Unternehmensberatung oder Relux-Produkten.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700&family=Merriweather+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg-cream: #FAF6F0; --bg-warm: #F5EFE6; --bg-card: #FFFFFF; --text-dark: #3D2E1F; --text-body: #5C4A35; --text-light: #8B7355; --accent-terracotta: #C4704A; --accent-terracotta-light: #D4896A; --accent-sage: #7D9471; --accent-sage-light: #9DB593; --border-warm: #E8DFD3; --shadow-warm: rgba(61,46,31,0.08); }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Work Sans', -apple-system, sans-serif; background: var(--bg-cream); color: var(--text-body); line-height: 1.7; font-size: 16px; }
+        h1, h2, h3, h4 { font-family: 'Merriweather Sans', Georgia, serif; font-weight: 700; line-height: 1.3; color: var(--text-dark); }
+        body::before { content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E"); pointer-events: none; z-index: 0; }
+        nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 1.25rem 0; background: rgba(250,246,240,0.95); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border-warm); }
+        .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 2rem; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: 'Merriweather Sans', Georgia, serif; font-size: 1.6rem; font-weight: 700; color: var(--text-dark); text-decoration: none; }
+        .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+        .nav-links a { color: var(--text-light); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.3s; position: relative; }
+        .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: var(--accent-terracotta); transition: width 0.3s; }
+        .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+        .nav-links a:hover, .nav-links a.active { color: var(--accent-terracotta); }
+        .mobile-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 5px; z-index: 1001; }
+        .mobile-toggle span { width: 22px; height: 2px; background: var(--text-dark); border-radius: 2px; transition: all 0.3s; }
+        .page-hero { min-height: 50vh; display: flex; align-items: center; justify-content: center; padding: 8rem 2rem 4rem; background: var(--bg-warm); position: relative; overflow: hidden; }
+        .page-hero::before { content: ''; position: absolute; bottom: -10%; right: -5%; width: 400px; height: 400px; background: radial-gradient(circle, rgba(196,112,74,0.1) 0%, transparent 70%); pointer-events: none; }
+        .page-hero-content { max-width: 700px; text-align: center; padding: 0 2rem; position: relative; z-index: 1; }
+        .page-hero h1 { font-size: clamp(2.25rem, 5vw, 3.5rem); margin-bottom: 1.5rem; }
+        .page-hero h1 .accent { color: var(--accent-terracotta); }
+        .page-subtitle { font-size: 1.15rem; color: var(--text-light); max-width: 580px; margin: 0 auto; line-height: 1.9; }
+        section { padding: 6rem 2rem; position: relative; z-index: 1; }
+        .section-inner { max-width: 1200px; margin: 0 auto; }
+        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+        .contact-info h2 { font-size: 1.75rem; margin-bottom: 1.5rem; }
+        .contact-info p { color: var(--text-body); margin-bottom: 2rem; line-height: 1.9; }
+        .info-card { background: var(--bg-card); border: 1px solid var(--border-warm); border-radius: 20px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 2px 12px var(--shadow-warm); }
+        .info-card h4 { font-size: 1rem; margin-bottom: 0.75rem; color: var(--accent-terracotta); }
+        .info-card p { margin: 0; color: var(--text-body); font-size: 0.95rem; }
+        .social-links { display: flex; gap: 1rem; margin-top: 2rem; }
+        .social-link { width: 48px; height: 48px; border-radius: 50%; background: var(--bg-warm); border: 1px solid var(--border-warm); display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 1.2rem; transition: all 0.3s; }
+        .social-link:hover { background: var(--accent-terracotta); border-color: var(--accent-terracotta); transform: translateY(-2px); }
+        .form-section { background: var(--bg-card); border: 1px solid var(--border-warm); border-radius: 24px; padding: 3rem; box-shadow: 0 4px 30px var(--shadow-warm); }
+        .form-section h3 { font-size: 1.5rem; margin-bottom: 2rem; }
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+        .form-group { margin-bottom: 1.25rem; }
+        .form-group.full { grid-column: 1 / -1; }
+        .form-group label { display: block; font-weight: 600; font-size: 0.9rem; color: var(--text-dark); margin-bottom: 0.5rem; }
+        .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 0.9rem 1.1rem; font-size: 0.95rem; font-family: 'Work Sans', sans-serif; border: 2px solid var(--border-warm); border-radius: 12px; background: var(--bg-cream); color: var(--text-body); transition: all 0.3s; }
+        .form-group input:focus, .form-group textarea:focus, .form-group select:focus { outline: none; border-color: var(--accent-terracotta); background: white; }
+        .form-group textarea { min-height: 120px; resize: vertical; }
+        .subject-options { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; margin-bottom: 1.5rem; }
+        .subject-option { padding: 0.8rem 1rem; background: var(--bg-cream); border: 2px solid var(--border-warm); border-radius: 12px; text-align: center; cursor: pointer; transition: all 0.3s; font-size: 0.9rem; font-weight: 500; }
+        .subject-option:hover { border-color: var(--accent-terracotta-light); }
+        .subject-option.selected { background: rgba(196,112,74,0.1); border-color: var(--accent-terracotta); color: var(--accent-terracotta); }
+        .subject-option input { display: none; }
+        .contact-prefs { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 0.5rem; }
+        .contact-pref { display: flex; align-items: center; gap: 0.5rem; padding: 0.6rem 1rem; background: var(--bg-cream); border: 2px solid var(--border-warm); border-radius: 50px; cursor: pointer; transition: all 0.3s; font-size: 0.88rem; }
+        .contact-pref:hover { border-color: var(--accent-terracotta-light); }
+        .contact-pref input { display: none; }
+        .contact-pref.selected { background: rgba(196,112,74,0.1); border-color: var(--accent-terracotta); }
+        .form-submit { display: block; width: 100%; padding: 1.2rem; background: var(--accent-terracotta); color: white; font-size: 1rem; font-weight: 700; font-family: 'Work Sans', sans-serif; border: none; border-radius: 50px; cursor: pointer; transition: all 0.3s; margin-top: 2rem; }
+        .form-submit:hover { background: var(--accent-terracotta-light); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(196,112,74,0.35); }
+        footer { background: var(--bg-warm); border-top: 1px solid var(--border-warm); padding: 4rem 2rem 2rem; margin-top: 6rem; }
+        .footer-inner { max-width: 1200px; margin: 0 auto; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+        .footer-brand .logo { font-family: 'Merriweather Sans', serif; font-size: 1.4rem; font-weight: 700; color: var(--text-dark); text-decoration: none; }
+        .footer-brand p { color: var(--text-light); margin-top: 1rem; font-size: 0.9rem; line-height: 1.7; }
+        .footer-col h4 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-light); margin-bottom: 1.25rem; }
+        .footer-col ul { list-style: none; }
+        .footer-col li { margin-bottom: 0.75rem; }
+        .footer-col a { color: var(--text-body); text-decoration: none; font-size: 0.9rem; transition: color 0.3s; }
+        .footer-col a:hover { color: var(--accent-terracotta); }
+        .footer-bottom { border-top: 1px solid var(--border-warm); padding-top: 2rem; text-align: center; color: var(--text-light); font-size: 0.85rem; }
+        @media (max-width: 1024px) { .contact-grid { grid-template-columns: 1fr; } .form-grid { grid-template-columns: 1fr; } .subject-options { grid-template-columns: 1fr 1fr; } }
+        @media (max-width: 768px) {
+            .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: rgba(250,246,240,0.98); backdrop-filter: blur(12px); flex-direction: column; padding: 1.5rem 2rem; gap: 1.25rem; border-bottom: 1px solid var(--border-warm); }
+            .nav-links.active { display: flex; }
+            .mobile-toggle { display: flex; }
+            .mobile-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+            .mobile-toggle.active span:nth-child(2) { opacity: 0; }
+            .mobile-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+            section { padding: 4rem 1.5rem; }
+            .page-hero { min-height: 45vh; padding: 7rem 1.5rem 3rem; }
+            .form-section { padding: 2rem 1.5rem; }
+            .subject-options { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-inner">
+            <a href="index.html" class="logo">Fudora</a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Start</a></li>
+                <li><a href="websites.html">Websites</a></li>
+                <li><a href="beratung.html">Beratung</a></li>
+                <li><a href="relux.html">Relux</a></li>
+                <li><a href="kontakt.html" class="active">Kontakt</a></li>
+            </ul>
+            <div class="mobile-toggle" id="mobileToggle"><span></span><span></span><span></span></div>
+        </div>
+    </nav>
+
+    <section class="page-hero">
+        <div class="page-hero-content">
+            <h1>Kontakt – <span class="accent">Sprechen Sie mit uns</span></h1>
+            <p class="page-subtitle">
+                Haben Sie Fragen zu unseren Leistungen oder möchten ein Projekt starten? 
+                Wir freuen uns auf Ihre Nachricht.
+            </p>
+        </div>
+    </section>
+
+    <section>
+        <div class="section-inner">
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h2>So erreichen Sie uns</h2>
+                    <p>
+                        Schreiben Sie uns eine Nachricht oder rufen Sie an. Wir melden uns zeitnah bei Ihnen – 
+                        in der Regel innerhalb von 24 Stunden.
+                    </p>
+                    <div class="info-card">
+                        <h4>Adresse</h4>
+                        <p>Fudora GmbH<br>Rheinthalstrasse 48<br>5345 Leibstadt, Schweiz</p>
+                    </div>
+                    <div class="info-card">
+                        <h4>E-Mail</h4>
+                        <p>info@fudora.ch</p>
+                    </div>
+                    <div class="info-card">
+                        <h4>Website</h4>
+                        <p>www.fudora.ch</p>
+                    </div>
+                    <div class="social-links">
+                        <a href="#" class="social-link" title="WhatsApp">💬</a>
+                        <a href="#" class="social-link" title="Signal">🔒</a>
+                        <a href="#" class="social-link" title="Telegram">✈️</a>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3>Nachricht senden</h3>
+                    <form id="contactForm">
+                        <div class="subject-options">
+                            <label class="subject-option selected">
+                                <input type="radio" name="subject" value="website" checked>
+                                Website
+                            </label>
+                            <label class="subject-option">
+                                <input type="radio" name="subject" value="beratung">
+                                Beratung
+                            </label>
+                            <label class="subject-option">
+                                <input type="radio" name="subject" value="relux">
+                                Relux
+                            </label>
+                        </div>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" id="name" name="name" placeholder="Max Mustermann" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">E-Mail</label>
+                                <input type="email" id="email" name="email" placeholder="ihre@email.de" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Telefon (optional)</label>
+                                <input type="tel" id="phone" name="phone" placeholder="+41 79 123 45 67">
+                            </div>
+                            <div class="form-group">
+                                <label for="company">Unternehmen (optional)</label>
+                                <input type="text" id="company" name="company" placeholder="Ihre Firma">
+                            </div>
+                            <div class="form-group full">
+                                <label for="message">Ihre Nachricht</label>
+                                <textarea id="message" name="message" placeholder="Erzählen Sie uns von Ihrem Projekt..." required></textarea>
+                            </div>
+                            <div class="form-group full">
+                                <label>Bevorzugte Kontaktmethode</label>
+                                <div class="contact-prefs">
+                                    <label class="contact-pref selected">
+                                        <input type="radio" name="contact_method" value="email" checked>
+                                        <span>📧 E-Mail</span>
+                                    </label>
+                                    <label class="contact-pref">
+                                        <input type="radio" name="contact_method" value="whatsapp">
+                                        <span>💬 WhatsApp</span>
+                                    </label>
+                                    <label class="contact-pref">
+                                        <input type="radio" name="contact_method" value="signal">
+                                        <span>🔒 Signal</span>
+                                    </label>
+                                    <label class="contact-pref">
+                                        <input type="radio" name="contact_method" value="telegram">
+                                        <span>✈️ Telegram</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="form-submit">Nachricht senden →</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo">Fudora</a>
+                    <p>Fudora GmbH mit Sitz in der Schweiz. Wir schaffen Mehrwert durch Qualität, gute Kommunikation und Vertrauen.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Leistungen</h4>
+                    <ul>
+                        <li><a href="websites.html">Website-Erstellung</a></li>
+                        <li><a href="beratung.html">Unternehmensberatung</a></li>
+                        <li><a href="relux.html">Relux Produkte</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Unternehmen</h4>
+                    <ul>
+                        <li><a href="index.html#team">Team</a></li>
+                        <li><a href="index.html#values">Werte</a></li>
+                        <li><a href="kontakt.html">Kontakt</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Rechtliches</h4>
+                    <ul>
+                        <li><a href="impressum.html">Impressum</a></li>
+                        <li><a href="datenschutz.html">Datenschutz</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 Fudora GmbH – Rheinthalstrasse 48, 5345 Leibstadt, Schweiz</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const toggle = document.getElementById('mobileToggle');
+        const navLinks = document.getElementById('navLinks');
+        toggle.addEventListener('click', () => {
+            toggle.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        // Subject options
+        document.querySelectorAll('.subject-option').forEach(opt => {
+            opt.addEventListener('click', () => {
+                document.querySelectorAll('.subject-option').forEach(o => o.classList.remove('selected'));
+                opt.classList.add('selected');
+            });
+        });
+
+        // Contact prefs
+        document.querySelectorAll('.contact-pref').forEach(pref => {
+            pref.addEventListener('click', () => {
+                document.querySelectorAll('.contact-pref').forEach(p => p.classList.remove('selected'));
+                pref.classList.add('selected');
+            });
+        });
+
+        // Form submission
+        document.getElementById('contactForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const btn = e.target.querySelector('.form-submit');
+            btn.textContent = 'Wird gesendet...';
+            btn.disabled = true;
+            setTimeout(() => {
+                btn.textContent = '✓ Nachricht gesendet!';
+                btn.style.background = 'var(--accent-sage)';
+                setTimeout(() => {
+                    btn.textContent = 'Nachricht senden →';
+                    btn.style.background = '';
+                    btn.disabled = false;
+                    e.target.reset();
+                    document.querySelectorAll('.subject-option')[0].click();
+                }, 2500);
+            }, 1200);
+        });
+    </script>
+</body>
+</html>
