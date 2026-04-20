@@ -9,27 +9,27 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700&family=Merriweather+Sans:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        :root { --bg-cream: #FAF6F0; --bg-warm: #F5EFE6; --bg-card: #FFFFFF; --text-dark: #3D2E1F; --text-body: #5C4A35; --text-light: #8B7355; --accent-terracotta: #C4704A; --accent-terracotta-light: #D4896A; --accent-sage: #7D9471; --accent-sage-light: #9DB593; --border-warm: #E8DFD3; --shadow-warm: rgba(61,46,31,0.08); }
+        :root { --bg-cream: #F4F8F9; --bg-warm: #E8F0F4; --bg-card: #FFFFFF; --text-dark: #2C3E50; --text-body: #4A5D6A; --text-light: #7A8FA0; --accent-teal: #4A9BA8; --accent-teal-light: #6BB5C4; --accent-sage: #5B9AA0; --accent-sage-light: #7DBCC9; --border-cool: #D0DDE3; --shadow-cool: rgba(44,62,80,0.08); }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
         body { font-family: 'Work Sans', -apple-system, sans-serif; background: var(--bg-cream); color: var(--text-body); line-height: 1.7; font-size: 16px; }
         h1, h2, h3, h4 { font-family: 'Merriweather Sans', Georgia, serif; font-weight: 700; line-height: 1.3; color: var(--text-dark); }
         body::before { content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E"); pointer-events: none; z-index: 0; }
-        nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 1.25rem 0; background: rgba(250,246,240,0.95); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border-warm); }
+        nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 1.25rem 0; background: rgba(250,246,240,0.95); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border-cool); }
         .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 2rem; display: flex; justify-content: space-between; align-items: center; }
         .logo { font-family: 'Merriweather Sans', Georgia, serif; font-size: 1.6rem; font-weight: 700; color: var(--text-dark); text-decoration: none; }
         .nav-links { display: flex; gap: 2.5rem; list-style: none; }
         .nav-links a { color: var(--text-light); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.3s; position: relative; }
-        .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: var(--accent-terracotta); transition: width 0.3s; }
+        .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: var(--accent-teal); transition: width 0.3s; }
         .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
-        .nav-links a:hover, .nav-links a.active { color: var(--accent-terracotta); }
+        .nav-links a:hover, .nav-links a.active { color: var(--accent-teal); }
         .mobile-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 5px; z-index: 1001; }
         .mobile-toggle span { width: 22px; height: 2px; background: var(--text-dark); border-radius: 2px; transition: all 0.3s; }
         .page-hero { min-height: 60vh; display: flex; align-items: center; justify-content: center; padding: 8rem 2rem 4rem; background: var(--bg-warm); position: relative; overflow: hidden; }
         .page-hero::before { content: ''; position: absolute; bottom: -10%; right: -5%; width: 400px; height: 400px; background: radial-gradient(circle, rgba(125,148,113,0.12) 0%, transparent 70%); pointer-events: none; }
         .page-hero-content { max-width: 700px; text-align: center; padding: 0 2rem; position: relative; z-index: 1; }
         .page-hero h1 { font-size: clamp(2.25rem, 5vw, 3.5rem); margin-bottom: 1.5rem; }
-        .page-hero h1 .accent { color: var(--accent-terracotta); }
+        .page-hero h1 .accent { color: var(--accent-teal); }
         .page-subtitle { font-size: 1.15rem; color: var(--text-light); max-width: 580px; margin: 0 auto; line-height: 1.9; }
         section { padding: 6rem 2rem; position: relative; z-index: 1; }
         .section-inner { max-width: 1200px; margin: 0 auto; }
@@ -42,24 +42,24 @@
         .intro-graphic { display: flex; justify-content: center; align-items: center; }
         .intro-orb { width: 300px; height: 300px; border-radius: 50%; background: linear-gradient(135deg, var(--accent-sage-light) 0%, #6B8561 100%); opacity: 0.12; display: flex; align-items: center; justify-content: center; font-size: 5rem; }
         .benefits-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; margin-top: 3rem; }
-        .benefit-card { background: var(--bg-card); border: 1px solid var(--border-warm); border-radius: 20px; padding: 2.5rem; transition: all 0.3s; box-shadow: 0 2px 12px var(--shadow-warm); }
-        .benefit-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px var(--shadow-warm); }
+        .benefit-card { background: var(--bg-card); border: 1px solid var(--border-cool); border-radius: 20px; padding: 2.5rem; transition: all 0.3s; box-shadow: 0 2px 12px var(--shadow-cool); }
+        .benefit-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px var(--shadow-cool); }
         .benefit-icon { width: 52px; height: 52px; border-radius: 14px; background: rgba(125,148,113,0.1); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; margin-bottom: 1.25rem; }
         .benefit-card h4 { font-size: 1.15rem; margin-bottom: 0.5rem; }
         .benefit-card p { color: var(--text-light); font-size: 0.9rem; line-height: 1.8; }
         .approach-section { background: var(--bg-warm); border-radius: 32px; padding: 4rem; margin: 0 2rem; }
         .approach-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 3rem; }
         .approach-step { text-align: center; }
-        .step-number { width: 56px; height: 56px; border-radius: 50%; background: var(--accent-terracotta); color: white; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.25rem; font-family: 'Merriweather Sans', serif; }
+        .step-number { width: 56px; height: 56px; border-radius: 50%; background: var(--accent-teal); color: white; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.25rem; font-family: 'Merriweather Sans', serif; }
         .approach-step h4 { font-size: 1.1rem; margin-bottom: 0.5rem; }
         .approach-step p { color: var(--text-light); font-size: 0.9rem; line-height: 1.7; }
-        .cta-section { background: linear-gradient(135deg, var(--accent-sage) 0%, #6B8561 100%); border-radius: 32px; padding: 4rem; text-align: center; margin: 0 2rem; }
+        .cta-section { background: linear-gradient(135deg, var(--accent-teal) 0%, #6B8561 100%); border-radius: 32px; padding: 4rem; text-align: center; margin: 0 2rem; }
         .cta-section h2 { color: white; font-size: 2rem; margin-bottom: 1rem; }
         .cta-section p { color: rgba(255,255,255,0.85); font-size: 1.1rem; margin-bottom: 2rem; max-width: 500px; margin-left: auto; margin-right: auto; }
         .btn { display: inline-flex; align-items: center; gap: 0.75rem; padding: 1rem 2rem; font-size: 0.95rem; font-family: 'Work Sans', sans-serif; font-weight: 600; text-decoration: none; cursor: pointer; border: none; border-radius: 50px; transition: all 0.3s; }
-        .btn-primary { background: white; color: var(--accent-sage); box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+        .btn-primary { background: white; color: var(--accent-teal); box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
         .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,0,0,0.15); }
-        footer { background: var(--bg-warm); border-top: 1px solid var(--border-warm); padding: 4rem 2rem 2rem; margin-top: 6rem; }
+        footer { background: var(--bg-warm); border-top: 1px solid var(--border-cool); padding: 4rem 2rem 2rem; margin-top: 6rem; }
         .footer-inner { max-width: 1200px; margin: 0 auto; }
         .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
         .footer-brand .logo { font-family: 'Merriweather Sans', serif; font-size: 1.4rem; font-weight: 700; color: var(--text-dark); text-decoration: none; }
@@ -68,11 +68,11 @@
         .footer-col ul { list-style: none; }
         .footer-col li { margin-bottom: 0.75rem; }
         .footer-col a { color: var(--text-body); text-decoration: none; font-size: 0.9rem; transition: color 0.3s; }
-        .footer-col a:hover { color: var(--accent-terracotta); }
-        .footer-bottom { border-top: 1px solid var(--border-warm); padding-top: 2rem; text-align: center; color: var(--text-light); font-size: 0.85rem; }
+        .footer-col a:hover { color: var(--accent-teal); }
+        .footer-bottom { border-top: 1px solid var(--border-cool); padding-top: 2rem; text-align: center; color: var(--text-light); font-size: 0.85rem; }
         @media (max-width: 1024px) { .intro-grid { grid-template-columns: 1fr; text-align: center; } .intro-orb { margin: 0 auto; } .approach-steps { grid-template-columns: 1fr; } .benefits-grid { grid-template-columns: 1fr; } }
         @media (max-width: 768px) {
-            .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: rgba(250,246,240,0.98); backdrop-filter: blur(12px); flex-direction: column; padding: 1.5rem 2rem; gap: 1.25rem; border-bottom: 1px solid var(--border-warm); }
+            .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: rgba(250,246,240,0.98); backdrop-filter: blur(12px); flex-direction: column; padding: 1.5rem 2rem; gap: 1.25rem; border-bottom: 1px solid var(--border-cool); }
             .nav-links.active { display: flex; }
             .mobile-toggle { display: flex; }
             .mobile-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
